@@ -137,11 +137,12 @@ python scripts/ml/train.py --help
 
 # Brief_17_Airflow
 Etape 1 intégrer les datas  
+cf README dans data/
 Etape 2 :  
 ```
 docker-compose up --build airflow
 ```
-Etape 3 :  
+Etape 3 :  dans un autre terminal dans le repo
 ```
 sudo chmod -R 777 mlflows
 ```
