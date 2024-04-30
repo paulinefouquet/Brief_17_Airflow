@@ -136,3 +136,32 @@ python scripts/ml/train.py --help
 
 
 # Brief_17_Airflow
+Etape 1 intégrer les datas  
+Etape 2 :  
+```
+docker-compose up --build airflow
+```
+Etape 3 :  
+```
+sudo chmod -R 777 mlflows
+```
+Etape 4 :  
+Trouver le login dans les logs
+Login with username: admin  password: xxxxxxxxxxxxx
+
+Etape 5 :  
+Trigger DAG w/config  
+{
+    "enable_preprocess": true,
+    "preprocess": {
+      "dataset_version": 1,
+      "audio_dir": "/opt/airflow/local-assets/raw_input_data/recordings",
+      "output_dir": "/opt/airflow/local-assets/tfrecord_datasets"
+    },
+    "train": {
+      "dataset_path": "/opt/airflow/local-assets/tfrecord_datasets/MNIST-audio/1",
+      "n_epochs": 2,
+      "data_batch_size": 32,
+      "model_yaml_config": "/opt/airflow/dags/model-config.yaml"
+    }
+  }
