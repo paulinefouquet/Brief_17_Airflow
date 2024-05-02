@@ -137,7 +137,7 @@ python scripts/ml/train.py --help
 
 # Brief_17_Airflow
 Etape 1 intégrer les datas  
-cf README dans data/
+cf README dans data/  
 Etape 2 :  
 ```
 docker-compose up --build airflow
