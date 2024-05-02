@@ -166,3 +166,4 @@ Trigger DAG w/config
       "model_yaml_config": "/opt/airflow/dags/model-config.yaml"
     }
   }
+![Example Trigger DAG w/config](./assets/trigger-job-example.png)
