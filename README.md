@@ -92,3 +92,18 @@ Trigger DAG w/config
     }
   }
 ![Example Trigger DAG w/config](./assets/trigger-job-example.png)
+
+
+## Simplon
+
+[Simplon](https://www.https://simplon.co/) is a French programming school distinguished by its inclusive approach, making programming education accessible to all. Founded on the principle of digital inclusion, Simplon offers free training in web development, AI development, and data analysis, open to everyone regardless of their starting level. Through hands-on learning and personalized support, Simplon enables individuals, including those distant from the job market, to learn digital skills and find employment in this rapidly growing sector.
+
+
+## License
+
+This project is licensed under the [MIT license](LICENSE).
+
+
+## Author
+
+This project was created by Pauline Fouquet
