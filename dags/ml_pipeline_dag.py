@@ -5,6 +5,8 @@ from airflow.operators.bash import BashOperator
 from airflow.utils.trigger_rule import TriggerRule
 from airflow.operators.python import BranchPythonOperator
 from airflow.operators.dummy_operator import DummyOperator
+from airflow.contrib.sensors.file_sensor import FileSensor
+from airflow.contrib.sensors.file_system_sensor import FileSystemHasEventsSensor
 
 
 # Correlation id for training job (this can be also found on MLFLow tracking)
@@ -22,14 +24,24 @@ def choose_to_do_preprocessing(**kwargs):
 with DAG(
         dag_id="audiocnn_ml_pipeline_dag",
         schedule_interval=None,
-        start_date=datetime(2022, 3, 3,),
+        start_date=datetime(2024, 5, 3,),
         catchup=False) as dag:
 
     start = DummyOperator(task_id="start")
 
+    # Sensor to watch for new files in the specified directory
+    file_sensor = FileSystemHasEventsSensor(
+        task_id="file_sensor",
+        filepath="/opt/airflow/local-assets/raw_input_data/recordings",
+        poke_interval=10,  
+        timeout=600,
+        dag=dag,
+    )
+
     branch = BranchPythonOperator(
         task_id="check_to_preprocess_or_not",
-        python_callable=choose_to_do_preprocessing
+        python_callable=choose_to_do_preprocessing,
+        provide_context=True
     )
 
     # Task for running data preprocessing task
