@@ -85,6 +85,7 @@ def train(
     )
     # Run evaluation
     metrics = model.evaluate(validation_set, verbose=0)
+    print(f"METRICS ----------->: {metrics}")
 
     # Save model
     model.save(
@@ -92,7 +93,6 @@ def train(
         include_optimizer=True,
         save_format="h5"
     )
-
 
 if __name__ == "__main__":
     train()

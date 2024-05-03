@@ -55,10 +55,19 @@ with DAG(
         trigger_rule=TriggerRule.ONE_SUCCESS
     )
 
+    # Task running our test for best model
+    check_task = BashOperator(
+        task_id=f"test_non_regression_job",
+        bash_command= "python ${MY_LOCAL_ASSETS}/check_non_regression.py",
+        dag=dag,
+        trigger_rule=TriggerRule.ONE_SUCCESS
+    )
+
     complete = DummyOperator(task_id="complete", trigger_rule=TriggerRule.ONE_SUCCESS)
 
     # DAG which define steps to run data preprocessing and training job pipeline with input options
     start >> branch
     preprocessing_task.set_upstream(branch)
     training_task.set_upstream([branch, preprocessing_task])
-    complete.set_upstream(training_task)
+    check_task.set_upstream(training_task)
+    complete.set_upstream(check_task)
