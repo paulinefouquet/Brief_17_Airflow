@@ -1,6 +1,6 @@
 # ml-training-airflow-mlflow-example
 
-This project is a fork of repository. I have cloned https://github.com/albincorreya/ml-training-airflow-mlflow-example/ 's repository, debugged the problem with poetry, and made it my own.
+This project is a inspired by repository https://github.com/albincorreya/ml-training-airflow-mlflow-example/'s repository. The problem with poetry is debbugged and I add some stuff of my own : a step of non-regression test.
 
 This is an example of setting up local MLOPs training pipeline infrastructure with some dummy production ready ML research code on a local server.
 
