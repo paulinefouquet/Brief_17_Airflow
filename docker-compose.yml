@@ -72,31 +72,31 @@ services:
       timeout: 5s
       retries: 5
 
-  # running ml experiments with single GPU device support
-  # you need to have nvidia-docker installed on host system
-  playground-gpu:
-    build:
-      context: .
-      dockerfile: ./docker/Dockerfile.playground
-    container_name: playground
-    depends_on:
-      - mlflow
-    volumes:
-      - ./scripts:/workspace/
-    networks:
-      - frontend
-      - backend
-    env_file:
-      - ./env_files/compose.env
-    entrypoint: []
-    shm_size: 6gb
-    # deploy:
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           device_ids: ['0']
-    #           capabilities: [ gpu ]
+  # # running ml experiments with single GPU device support
+  # # you need to have nvidia-docker installed on host system
+  # playground-gpu:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/Dockerfile.playground
+  #   container_name: playground
+  #   depends_on:
+  #     - mlflow
+  #   volumes:
+  #     - ./scripts:/workspace/
+  #   networks:
+  #     - frontend
+  #     - backend
+  #   env_file:
+  #     - ./env_files/compose.env
+  #   entrypoint: []
+  #   shm_size: 6gb
+  #   # deploy:
+  #   #   resources:
+  #   #     reservations:
+  #   #       devices:
+  #   #         - driver: nvidia
+  #   #           device_ids: ['0']
+  #   #           capabilities: [ gpu ]
 
 networks:
   frontend:

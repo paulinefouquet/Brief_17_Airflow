@@ -35,6 +35,8 @@ Tools used:
 
 - Make sure you download the dataset as per the instructions described [here](./data/README.md).
 
+- Démarre Docker Desktop
+
 - One command to spin up everything
 
 ```
@@ -74,24 +76,7 @@ We can also see a visualisation of ML training pipeline DAG
 - Trigger our [ml_pipeline_dag.py](./dags/ml_pipeline_dag.py) using the 
   [ml_pipeline_config.json](./dags/ml_pipeline_config.json) example on the web UI.
   
-![alt text](./assets/trigger-job-example.png)
-
-Trigger DAG w/config  
-{
-    "enable_preprocess": true,
-    "preprocess": {
-      "dataset_version": 1,
-      "audio_dir": "/opt/airflow/local-assets/raw_input_data/recordings",
-      "output_dir": "/opt/airflow/local-assets/tfrecord_datasets"
-    },
-    "train": {
-      "dataset_path": "/opt/airflow/local-assets/tfrecord_datasets/MNIST-audio/1",
-      "n_epochs": 2,
-      "data_batch_size": 32,
-      "model_yaml_config": "/opt/airflow/dags/model-config.yaml"
-    }
-  }
-![Example Trigger DAG w/config](./assets/trigger-job-example.png)
+[Example Trigger DAG w/config](./assets/trigger-job-example.png)
 
 
 ## Simplon

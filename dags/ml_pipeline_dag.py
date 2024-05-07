@@ -5,8 +5,7 @@ from airflow.operators.bash import BashOperator
 from airflow.utils.trigger_rule import TriggerRule
 from airflow.operators.python import BranchPythonOperator
 from airflow.operators.dummy_operator import DummyOperator
-from airflow.contrib.sensors.file_sensor import FileSensor
-from airflow.contrib.sensors.file_system_sensor import FileSystemHasEventsSensor
+# from airflow.providers.filesystem.sensors.file import FileSensor
 
 
 # Correlation id for training job (this can be also found on MLFLow tracking)
@@ -29,14 +28,14 @@ with DAG(
 
     start = DummyOperator(task_id="start")
 
-    # Sensor to watch for new files in the specified directory
-    file_sensor = FileSystemHasEventsSensor(
-        task_id="file_sensor",
-        filepath="/opt/airflow/local-assets/raw_input_data/recordings",
-        poke_interval=10,  
-        timeout=600,
-        dag=dag,
-    )
+#     # Sensor to watch for new files in the specified directory
+#     file_sensor = FileSensor(
+#     task_id="file_sensor",
+#     filepath="/opt/airflow/local-assets/raw_input_data/recordings",
+#     poke_interval=10,
+#     timeout=600,
+#     dag=dag,
+# )
 
     branch = BranchPythonOperator(
         task_id="check_to_preprocess_or_not",
